@@ -2,7 +2,7 @@
 TARGET = $(notdir $(CURDIR))
 
 # The teensy version to use, 30, 31, 35, 36, or LC
-TEENSY = 31
+TEENSY = 35
 
 # Set to 24000000, 48000000, or 96000000 to set CPU core speed
 TEENSY_CORE_SPEED = 96000000
@@ -132,6 +132,9 @@ reboot:
 	@-$(abspath $(TOOLSPATH))/teensy_reboot
 
 upload: post_compile reboot
+
+serial:
+	@$(abspath $(TOOLSPATH))/teensy_serialmon -v /dev/ttyACM0
 
 $(BUILDDIR)/%.o: %.c
 	@echo -e "[CC]\t$<"
